@@ -26,15 +26,20 @@ void loop() {
         while (Serial.available()) {
             Serial.println("Enable led blinking? (y/n): ");
             String isEnabled = Serial.readString();
+            Serial.println("You have entered: " + isEnabled);
             if (isEnabled == "y") {
                 enableBlinking = true;
-                Serial.println("Enter led interval: ");
-                String temp = Serial.readString();
-                if (temp.toInt() > 0) {
-                    blinkingInterval = temp.toInt();
-                }
-            } else {
+//                  Serial.println("Enter led interval: ");
+//                String temp = Serial.readStringUntil('!');
+//                Serial.println("You have entered: " + temp);
+//                if (temp.toInt() > 0) {
+//                    blinkingInterval = temp.toInt();
+//                }
+                Serial.println("Configuration saved. Now watch the led blinking!");
+            } else if (isEnabled == "n") {
                 enableBlinking = false;
+            } else {
+                continue;
             }
             break;
         }
